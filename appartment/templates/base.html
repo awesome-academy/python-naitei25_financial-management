@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{%trans "Appartment-Manager" %}</title>
     {% tailwind_css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/plugins/monthSelect/style.css">
   </head>
   <body class="bg-white text-black">
     {% include "base_message.html" %}
@@ -16,8 +18,12 @@
         {% block sidebar %}{%endblock %}
       </div>
       <div class="grow">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/plugins/monthSelect/index.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         {% include "base_header.html"%} 
         {% block content %}{% endblock %}
+        {% block javascript %}{% endblock %}
       </div>
     </div>
   </body>
