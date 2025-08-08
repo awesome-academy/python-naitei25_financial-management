@@ -50,6 +50,15 @@
         <span>{% trans "Quản lý yêu cầu" %}</span>
       </a>
     </li>
+
+    <li class="p-2 w-full hover:bg-gray-500">
+      <a class="flex items-center gap-2 pl-2" href="{% url 'resident_notification_history' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-5 h-5" fill="currentColor">
+              <path d="M544 128C579.3 128 608 156.7 608 192V416C608 451.3 579.3 480 544 480H512V528C512 541.3 501.3 552 488 552C474.7 552 464 541.3 464 528V480H176V528C176 541.3 165.3 552 152 552C138.7 552 128 541.3 128 528V480H96C60.7 480 32 451.3 32 416V192C32 156.7 60.7 128 96 128H544ZM96 176C87.16 176 80 183.2 80 192V240C80 248.8 87.16 256 96 256H544C552.8 256 560 248.8 560 240V192C560 183.2 552.8 176 544 176H96ZM544 304H96C87.16 304 80 311.2 80 320V368C80 376.8 87.16 384 96 384H544C552.8 384 560 376.8 560 368V320C560 311.2 552.8 304 544 304Z"/>
+          </svg>
+          <span>{% trans "Lịch sử thông báo" %}</span>
+      </a>
+  </li>
   </ul>
 </div>
 {% endblock%}

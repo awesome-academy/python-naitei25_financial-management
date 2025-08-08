@@ -28,11 +28,18 @@ def resident_notification_history(request):
     Hiển thị lịch sử thông báo cho người thuê.
     """
     notifications = Notification.objects.filter(
-        receiver=request.user  # Chỉ lấy thông báo gửi đến người thuê
+        Q(receiver=request.user) | Q(sender=request.user)
     ).select_related("sender", "receiver")
 
+    # Lọc theo loại thông báo
+    filter_type = request.GET.get("filter_type", "all")
+    if filter_type == "to_me":
+        notifications = notifications.filter(receiver=request.user)
+    elif filter_type == "by_me":
+        notifications = notifications.filter(sender=request.user)
+
     context = filter_notifications(request, notifications)
-    context["filter_type"] = "to_me"  # Chỉ có một loại: gửi đến người thuê
+    context["filter_type"] = filter_type
     return render(request, "resident/notifications/history_notifications.html", context)
 
 
