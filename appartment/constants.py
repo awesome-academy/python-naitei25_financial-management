@@ -46,6 +46,7 @@ class RoomStatus(Enum):
     AVAILABLE = "available"
     OCCUPIED = "occupied"
     MAINTENANCE = "maintenance"
+    UNAVAILABLE = "unavailable"  # Thêm dòng này
 
     @classmethod
     def choices(cls):
