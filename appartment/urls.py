@@ -8,6 +8,7 @@ from appartment.views.manager.resident_views import (
     leave_room,
 )
 from appartment.views.manager import room_views, room_history_views
+from appartment.views.resident import resident_room_views
 
 
 urlpatterns = [
@@ -26,5 +27,18 @@ urlpatterns = [
         "<str:room_id>/history/",
         room_history_views.get_room_history,
         name="room_history",
+    ),
+    path(
+        "resident_room_list", resident_room_views.room_list, name="resident_room_list"
+    ),
+    path(
+        "resident/<str:room_id>",
+        resident_room_views.room_detail,
+        name="resident_room_detail",
+    ),
+    path(
+        "resident/<str:room_id>/history",
+        resident_room_views.room_history,
+        name="resident_room_history",
     ),
 ]

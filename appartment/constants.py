@@ -96,3 +96,7 @@ class UserRole(Enum):
     @classmethod
     def choices(cls):
         return [(role.value, role.name.replace("_", " ").title()) for role in cls]
+
+
+DAY_MONTH_YEAR_FORMAT = "%d/%m/%Y"
+MONTH_YEAR_FORMAT = "%m/%Y"
