@@ -1,4 +1,4 @@
-{% extends "base_resident.html" %}
+{% extends "base_admin.html" %}
 {% load i18n %}
 {% block content %}
 <div class="p-6 bg-gray-50 min-h-screen">
@@ -28,8 +28,9 @@
                 <label class="block text-gray-700">{% trans "Loại thông báo" %}</label>
                 <select name="filter_type" class="w-full p-2 border rounded">
                     <option value="all" {% if filter_type == 'all' %}selected{% endif %}>{% trans "Tất cả" %}</option>
-                    <option value="to_me" {% if filter_type == 'to_me' %}selected{% endif %}>{% trans "Gửi đến tôi" %}</option>
-                    <option value="by_me" {% if filter_type == 'by_me' %}selected{% endif %}>{% trans "Do tôi gửi" %}</option>
+                    <option value="to_admin" {% if filter_type == 'to_admin' %}selected{% endif %}>{% trans "Gửi đến tôi" %}</option>
+                    <option value="by_admin" {% if filter_type == 'by_admin' %}selected{% endif %}>{% trans "Do tôi gửi" %}</option>
+                    <option value="from_resident" {% if filter_type == 'from_resident' %}selected{% endif %}>{% trans "Từ người thuê" %}</option>
                 </select>
             </div>
             <div>
@@ -86,7 +87,7 @@
                             </td>
                             <td class="py-4 px-6 text-center">
                                 {% if item.notification.status == 'unread' %}
-                                    <form method="post" action="{% url 'appartment:mark_notification_read' item.notification.notification_id %}">
+                                    <form method="post" action="{% url 'mark_notification_read' item.notification.notification_id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">{% trans "Đánh dấu đã đọc" %}</button>
                                     </form>
