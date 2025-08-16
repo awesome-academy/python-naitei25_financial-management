@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q, Subquery, OuterRef
 from django.utils import timezone
+
+from appartment.constants import UserRole
+from appartment.utils.permissions import role_required
 from ...models import (
     Bill,
     RoomResident,
@@ -11,7 +14,7 @@ from ...models import (
 )
 
 
-@login_required
+@role_required(UserRole.RESIDENT.value)
 def resident_bill_history(request):
     """
     View hiển thị lịch sử hóa đơn của cư dân
@@ -20,9 +23,7 @@ def resident_bill_history(request):
     user = request.user
 
     # Lấy tất cả các phòng mà user đang ở và đã từng ở
-    room_residents = RoomResident.objects.filter(user=user).select_related(
-        "room"
-    )
+    room_residents = RoomResident.objects.filter(user=user).select_related("room")
 
     # Tạo danh sách các điều kiện để lọc bill
     bill_conditions = Q()
